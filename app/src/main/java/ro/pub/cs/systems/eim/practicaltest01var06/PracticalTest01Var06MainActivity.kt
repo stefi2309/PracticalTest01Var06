@@ -25,6 +25,8 @@ class PracticalTest01Var06MainActivity : AppCompatActivity() {
             if (returnValue != null) { score += returnValue }
 
             Toast.makeText(this, "Total score: $score", Toast.LENGTH_SHORT).show()
+
+            if(score > 20) { startServiceIfConditionIsMet() }
         }
     }
 
@@ -98,4 +100,11 @@ class PracticalTest01Var06MainActivity : AppCompatActivity() {
         if (checkBox3.isChecked) count++
         return count
     }
+    private fun startServiceIfConditionIsMet() {
+        val intent = Intent(applicationContext, PracticalTest01Var06Service::class.java).apply {
+            putExtra("score", score.toString())
+        }
+        applicationContext.startService(intent)
+    }
+
 }
